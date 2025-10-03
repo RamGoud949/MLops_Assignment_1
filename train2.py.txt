@@ -1,0 +1,21 @@
+from sklearn.kernel_ridge import KernelRidge
+from misc import load_data, preprocess_data, train_model, evaluate_model
+
+def run_kernel_ridge_workflow():
+    """Runs the complete ML workflow for the Kernel Ridge Regressor."""
+    print("--- Starting Kernel Ridge Model Workflow ---")
+    df = load_data()
+    X_train, X_test, y_train, y_test = preprocess_data(df)
+    
+    # Instantiate the Kernel Ridge model (using default alpha)
+    kr_model = KernelRidge(alpha=1.0)
+    trained_model = train_model(kr_model, X_train, y_train)
+    
+    # Model Evaluation
+    mse = evaluate_model(trained_model, X_test, y_test)
+    
+    # Required output for evaluation
+    print(f"\n✅ KernelRidgeRegressor Average MSE: {mse:.4f}")
+
+if __name__ == "__main__":
+    run_kernel_ridge_workflow()
