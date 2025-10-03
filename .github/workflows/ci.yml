@@ -6,8 +6,8 @@ on:
       - kernelridge
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
+..build-and-test:
+...runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Repository
