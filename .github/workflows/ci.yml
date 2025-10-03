@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.9, 3.10]  # Run on both Python versions
+        python-version: [3.9, 3.10]
 
     steps:
       # Step 1: Checkout repository
@@ -23,22 +23,31 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      # Step 3: Install dependencies
+      # Step 3: Cache pip dependencies
+      - name: Cache pip
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      # Step 4: Install dependencies
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # Step 4: Debug: show repo structure (optional)
+      # Step 5: Debug repo structure (optional)
       - name: Debug - Show repo structure
         run: |
           pwd
           ls -R
 
-      # Step 5: Run Decision Tree training
+      # Step 6: Run Decision Tree model
       - name: Run Decision Tree Model (train.py)
         run: python train.py
 
-      # Step 6: Run Kernel Ridge training
+      # Step 7: Run Kernel Ridge model
       - name: Run Kernel Ridge Model (train2.py)
         run: python train2.py
