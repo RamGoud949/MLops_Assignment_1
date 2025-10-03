@@ -8,7 +8,7 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-
+    
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
@@ -22,9 +22,11 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+        working-directory: MLops_Assignment_1 
     
     - name: Run Decision Tree Model (train.py)
       run: python train.py
-        
+      working-directory: MLops_Assignment_1
     - name: Run Kernel Ridge Model (train2.py)
       run: python train2.py
+      working-directory: MLops_Assignment_1
