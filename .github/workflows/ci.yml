@@ -1,4 +1,7 @@
-      - name: Debug - Show repo structure
-        run: |
-          pwd
-          ls -R
+name: Python CI Pipeline
+
+on:
+  push:
+    branches:
+      - kernelridge
+
