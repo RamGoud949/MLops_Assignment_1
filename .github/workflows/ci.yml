@@ -23,7 +23,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Debug: Show repo structure
+      - name: Debug - Show repo structure
         run: ls -R
 
       - name: Run Decision Tree Model (train.py)
