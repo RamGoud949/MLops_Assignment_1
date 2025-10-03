@@ -8,17 +8,20 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9, 3.10]  # Run on both Python versions
 
     steps:
-      # Step 1: Checkout the repository
+      # Step 1: Checkout repository
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up Python 3.9
-      - name: Set up Python 3.9
+      # Step 2: Set up Python version from matrix
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: ${{ matrix.python-version }}
 
       # Step 3: Install dependencies
       - name: Install Dependencies
@@ -26,7 +29,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # Step 4: Debug: Show repo structure (optional, helps verify file paths)
+      # Step 4: Debug: show repo structure (optional)
       - name: Debug - Show repo structure
         run: |
           pwd
@@ -39,5 +42,3 @@ jobs:
       # Step 6: Run Kernel Ridge training
       - name: Run Kernel Ridge Model (train2.py)
         run: python train2.py
-
-
