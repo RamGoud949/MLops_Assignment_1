@@ -18,12 +18,13 @@ jobs:
       with: 
         python-version: '3.9' 
  
-    - name: Install Dependencies 
-        python -m pip install --upgrade pip 
-        pip install -r requirements.txt 
- 
-    - name: Run Decision Tree Model (train.py) 
-      run: python train.py 
- 
-    - name: Run Kernel Ridge Model (train2.py) 
-      run: python train2.py 
+- name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run Decision Tree Model (train.py)
+      run: python train.py # <--- Ensure this line has 6 spaces of indentation
+
+    - name: Run Kernel Ridge Model (train2.py)
+      run: python train2.py # <--- Ensure this line has 6 spaces of indentation
