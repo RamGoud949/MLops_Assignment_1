@@ -24,7 +24,7 @@ jobs:
         pip install -r requirements.txt
     
     - name: Run Decision Tree Model (train.py)
-      run: python train.py
+      run: python MLops_Assignment_1/train.py
         
     - name: Run Kernel Ridge Model (train2.py)
-      run: python train2.py
+      run: python MLops_Assignment_1/train2.py
