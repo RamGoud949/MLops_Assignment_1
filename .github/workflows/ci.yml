@@ -9,8 +9,8 @@ jobs:
 ..build-and-test:
 ...runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout Repository
+....steps:
+.... - name: Checkout Repository
       uses: actions/checkout@v4
 
     - name: Set up Python 3.9
